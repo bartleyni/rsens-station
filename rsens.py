@@ -13,7 +13,7 @@ while True:
 	cur = db.cursor()
 	ret = dev.ctrl_transfer(0xC0, 4, 0, 0, 200)
 	data = (ret[0] + ((ret[1] & 3) * 256)) * 0.1 + 30
-	print "%s dB" % data
+	#print "%s dB" % data
 	
 	try:
 		cur.execute("INSERT INTO tub_raw (decibel) VALUES (%s)" % data)
@@ -23,7 +23,7 @@ while True:
 	except:
 		db.rollback()
 	db.close()
-	time.sleep(0.5)
+	time.sleep(0.2)
 
 	
 
